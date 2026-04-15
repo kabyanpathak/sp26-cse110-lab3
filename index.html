@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Technical meeting minutes for the Rust-based Cryptography Library project." />
+    <meta name="author" content="Gemini User" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoLib &mdash; Engineering Meeting Minutes</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+  </head>
+  <body>
+
+    <header>
+      <h1>Internal Crypto Engineering Minutes</h1>
+      <nav>
+        <ul>
+          <li><a href="#details-section">Session Metadata</a></li>
+          <li><a href="#attendance">Engineering Team</a></li>
+          <li><a href="#agenda">Technical Agenda</a></li>
+          <li><a href="#old-business">Outstanding PRs</a></li>
+          <li><a href="#new-business">System Architecture</a></li>
+          <li><a href="#media">Design Artifacts</a></li>
+          <li><a href="#feedback-form">Validation Form</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <section id="details-section">
+        <h2>Project: Home Server Secure Shell</h2>
+        <h3>Topic: Rust Memory Safety</h3>
+        <p><strong>Date:</strong> <span>April 14, 2026</span></p>
+        <p><strong>Security Level:</strong> <em>Confidential - Internal Only</em></p>
+      </section>
+
+      <hr />
+
+      <section id="attendance">
+        <h2>Attendance</h2>
+        <ul>
+          <li><b>Kabyan Pathak</b> &mdash; Low-level Optimization</li>
+          <li><b>Pabyan Kathak</b> &mdash; Rust Systems Engineer</li>
+          <li><b>Dabyan Lathak</b> &mdash; Security Lead</li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <section id="agenda">
+        <h2>Technical Agenda</h2>
+        <ol>
+          <li>removing unsafe imports</li>
+          <li>fixing infinite loop</li>
+          <li>making sure software works with hardware requirements</li>
+          <li>update documentation</li>
+        </ol>
+      </section>
+
+      <hr />
+
+      <section id="old-business">
+        <h2>Old Business</h2>
+        <h3>Unfinished Items</h3>
+        <ul>
+          <li>
+            <strong>Heap Allocation:</strong> Alex needs to replace <code>Box</code> usage in the core primitive to prevent timing leaks.
+          </li>
+          <li>
+            <strong>CI Pipeline:</strong> Bobby needs to start writing the unit tests himself instead of gemini.
+          </li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <section id="new-business">
+        <h2>New Business</h2>
+        <h3>Design Decisions</h3>
+
+        <details>
+          <summary>Decision: Error Handling Pattern</summary>
+          <p>
+            The team reached a consensus: <strong>No <code>unwrap()</code> or <code>expect()</code></strong> allowed in the library. 
+            We will implement a custom <code>CryptoError</code> enum and use exhaustive <code>match</code> statements to ensure all edge cases are handled at the call site.
+          </p>
+        </details>
+
+        <details>
+          <summary>Memory Layout</summary>
+          <p>
+            Use functional programming when possible
+          </p>
+        </details>
+      </section>
+
+      <hr />
+
+      <section id="media">
+        <h2>Meeting Media</h2>
+
+        <h3>Logic Flow Diagram</h3>
+        <p>Visualizing the encryption pipeline:</p>
+        <img
+          src="assets/whiteboard.jpg"
+          alt="Diagram showing all the important data" 
+          width="600"
+        />
+
+        <h3>Audio Debrief</h3>
+        <audio controls>
+          <source src="assets/meeting-audio.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+
+        <h3>Architecture Walkthrough</h3>
+        <video controls width="600">
+          <source src="assets/meeting-video.mp4" type="video/mp4" />
+          Your browser does not support the video element.
+        </video>
+      </section>
+
+      <hr />
+
+      <section id="feedback-form">
+        <h2>Security Audit Feedback</h2>
+        <form action="#" method="post">
+
+          <fieldset>
+            <legend>Auditor Credentials</legend>
+            <label for="name">Audit ID:</label>
+            <input type="text" id="name" name="name" placeholder="ID-7723" />
+            <br /><br />
+            <label for="meeting-date">Review Date:</label>
+            <input type="date" id="meeting-date" name="meeting-date" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Protocol Robustness</legend>
+            <p>Did you have fun</p>
+            <label><input type="radio" name="rating" value="excellent" /> Never Ganna Give you up</label><br />
+            <label><input type="radio" name="rating" value="good" /> Never ganna let you down</label><br />
+            <label><input type="radio" name="rating" value="poor" /> Never ganna come around and desert you</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>We’ve known each other for so long</legend>
+            <label><input type="checkbox" name="topic" value="aes" /> Your heart’s been aching</label><br />
+            <label><input type="checkbox" name="topic" value="ecc" /> But you’re too shy to say it</label><br />
+            <label><input type="checkbox" name="topic" value="sha" /> Inside we both know what’s been going on</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Hardware Context</legend>
+            <label for="facilitator">Target CPU:</label>
+            <input type="text" id="facilitator" name="facilitator" list="cpu-list" />
+            <datalist id="cpu-list">
+              <option value="Ryzen 7 3700X" />
+              <option value="RTX 3070 (CUDA)" />
+              <option value="ARM Cortex-M4" />
+            </datalist>
+            <br /><br />
+            <label for="team-member">Subject Matter Expert:</label>
+            <select id="team-member" name="team-member">
+              <option value="">-- Select --</option>
+              <option value="lead">Kabyan Pathak</option>
+              <option value="Pabyan">Pabyan Kathak</option>
+            </select>
+            <br /><br />
+            <textarea id="comments" name="comments" rows="5" cols="50" placeholder="List identified side-channels..."></textarea>
+          </fieldset>
+
+          <br />
+          <button type="submit">Submit Report</button>
+          <button type="reset">Wipe Form</button>
+        </form>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2026 Secure Home Server Project. 
+        Generated with semantic HTML for standard compliance. 
+        <a href="#details-section">Return to Header</a>
+      </p>
+    </footer>
+
+  </body>
+</html>

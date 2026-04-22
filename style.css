@@ -194,10 +194,9 @@ section:has(form) {
 footer {
     padding: 1rem;
     background-color: ghostwhite;
+}
 
-    /* nested */
-    footer p {
-        font-size: 0.8rem;
-        text-align: center;
-    }
+footer p {
+    font-size: 0.8rem;
+    text-align: center;
 }

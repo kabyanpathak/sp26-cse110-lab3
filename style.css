@@ -1,0 +1,24 @@
+/* Variables */
+:root {
+    --green: #00FF00;
+    --dark: #808080;
+    --header-c: var(--main-white, #ffffff);
+}
+
+body {
+    font-family: 'Fira Code', ' Courier New', monospace;
+    background-color: var(--dark);
+    color: purple;
+}
+
+
+header {
+    background-color: rgba(22, 27, 34, 0.95);
+    color: var(--header-c);
+    border: 2px solid #30363d;
+}
+
+#details-section {
+    background-color: hsl(210, 15%, 12%);
+    color: color-mix(in srgb, var(--green), white 20%);
+}
